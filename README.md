@@ -4,7 +4,7 @@ A test repository for one question: when an actor is on the bypass list of a "Re
 
 Short answer from the tests below: only the merge API. Auto-merge never completes, the merge queue never accepts the PR, and `enqueuePullRequest` is refused. A human approval fixes all of it within seconds.
 
-The full write-up is the GitHub community discussion linked here once it is posted: DISCUSSION_LINK
+The full write-up is the GitHub community discussion linked here once it is posted: https://github.com/orgs/community/discussions/208718
 
 ## How the tests were run
 
