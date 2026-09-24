@@ -6,6 +6,6 @@ FROM golang:1.27 AS s4
 FROM busybox:1.38 AS s5
 FROM perl:5.45 AS s6
 FROM ruby:3.4 AS s7
-FROM php:8.1 AS s8
+FROM php:8.5 AS s8
 FROM haproxy:2.6 AS s9
 FROM postgres:15 AS s10
