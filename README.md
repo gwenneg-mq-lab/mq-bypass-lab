@@ -22,18 +22,18 @@ The rules on `main` changed between tests. Here is the state for each PR.
 
 | PR | Rules on `main` at the time | Bypass actor | What was tried | Result |
 |---|---|---|---|---|
-| #1 | ruleset "approval" (1 approval), ruleset "checks" | the app, mode "For pull requests only" | app turned on auto-merge; 23 min later a human approved | blocked until the approval, merged 24 s after it |
-| #2 | same rulesets | the app, mode "Always allow" | app turned on auto-merge; 20 min later the app called the merge API | blocked until the API call, then merged at once |
-| #3 | classic branch protection: 1 approval, app allowed to bypass, `ci` required | the app | app turned on auto-merge; 20 min later Renovate merged it itself | blocked until Renovate's own merge |
-| #4 | rulesets "approval" and "checks" | the app, mode "For pull requests only" | Renovate merged it itself on its second run | merged, no approval |
-| #5 | rulesets "approval", "checks" and "queue" | the app | auto-merge for 20 min, then `enqueuePullRequest`, then the merge API with Renovate 43 and 44, then a human approval | nothing worked until the approval; then queued in 17 s and merged |
-| #6 | same, and the app also on the bypass list of the "queue" ruleset | the app | Renovate merged it itself | merged directly, skipped the queue |
-| #7 | rulesets "checks" and "queue", no approval rule | nobody | app turned on auto-merge | queued in 16 s, merged by the queue |
-| #8 | same as #7 | nobody | the major bump of the same line as #7 | dropped by the queue as conflicting, closed by hand |
-| #9 | rulesets "approval" and "checks"; "queue" turned on for one test | the Repository admin role | a human admin turned on auto-merge (20 min), called `enqueuePullRequest`, then the merge API | only the merge API worked |
-| #10 | rulesets "approval" and "checks" | Organization admin | the organization owner turned on auto-merge (20 min), then the merge API | only the merge API worked |
-| #11 | same as #10 | Organization admin | the major bump of the same line as #10 | closed by hand, not tested |
-| #12 | classic branch protection with "Require merge queue": 1 approval, app allowed to bypass, `ci` required | the app | auto-merge for 20 min, then the merge API, then `enqueuePullRequest`, then a human approval | nothing worked until the approval; then queued in 5 s and merged |
+| [#1](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/1) | ruleset "approval" (1 approval), ruleset "checks" | the app, mode "For pull requests only" | app turned on auto-merge; 23 min later a human approved | blocked until the approval, merged 24 s after it |
+| [#2](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/2) | same rulesets | the app, mode "Always allow" | app turned on auto-merge; 20 min later the app called the merge API | blocked until the API call, then merged at once |
+| [#3](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/3) | classic branch protection: 1 approval, app allowed to bypass, `ci` required | the app | app turned on auto-merge; 20 min later Renovate merged it itself | blocked until Renovate's own merge |
+| [#4](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/4) | rulesets "approval" and "checks" | the app, mode "For pull requests only" | Renovate merged it itself on its second run | merged, no approval |
+| [#5](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/5) | rulesets "approval", "checks" and "queue" | the app | auto-merge for 20 min, then `enqueuePullRequest`, then the merge API with Renovate 43 and 44, then a human approval | nothing worked until the approval; then queued in 17 s and merged |
+| [#6](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/6) | same, and the app also on the bypass list of the "queue" ruleset | the app | Renovate merged it itself | merged directly, skipped the queue |
+| [#7](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/7) | rulesets "checks" and "queue", no approval rule | nobody | app turned on auto-merge | queued in 16 s, merged by the queue |
+| [#8](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/8) | same as #7 | nobody | the major bump of the same line as #7 | dropped by the queue as conflicting, closed by hand |
+| [#9](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/9) | rulesets "approval" and "checks"; "queue" turned on for one test | the Repository admin role | a human admin turned on auto-merge (20 min), called `enqueuePullRequest`, then the merge API | only the merge API worked |
+| [#10](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/10) | rulesets "approval" and "checks" | Organization admin | the organization owner turned on auto-merge (20 min), then the merge API | only the merge API worked |
+| [#11](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/11) | same as #10 | Organization admin | the major bump of the same line as #10 | closed by hand, not tested |
+| [#12](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/12) | classic branch protection with "Require merge queue": 1 approval, app allowed to bypass, `ci` required | the app | auto-merge for 20 min, then the merge API, then `enqueuePullRequest`, then a human approval | nothing worked until the approval; then queued in 5 s and merged |
 
 Each PR page shows the timeline GitHub wrote: when auto-merge was enabled, when a review was added, when the PR entered or left the queue, and when it merged.
 
