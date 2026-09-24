@@ -1,5 +1,5 @@
 # Merge-queue bypass lab. One old tag per stage; each scenario enables one of them in Renovate.
-FROM alpine:3.18 AS s1
+FROM alpine:3.24 AS s1
 FROM nginx:1.24 AS s2
 FROM python:3.10 AS s3
 FROM golang:1.21 AS s4
