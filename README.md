@@ -40,3 +40,14 @@ Each PR page shows the timeline GitHub wrote: when auto-merge was enabled, when 
 ## State of the rules now
 
 The three rulesets still exist and are all disabled. The classic branch protection rule on `main` is the one from PR #12: one required approval, the app allowed to bypass required pull requests, `ci` required, and "Require merge queue" on. Nothing here is meant to be reused. The repository is kept public so the timelines stay visible.
+
+## Merges per Renovate run
+
+A second question, tested on 2026-09-24 with no branch rules: when two automerge PRs are green, how many does one Renovate run merge? Two base image lines far apart in the Dockerfile were reset, Renovate 43.268.1 opened a PR for each, both went green, and one more run merged them.
+
+| Renovate setting | Merged in that run | What happened to the other PR |
+|---|---|---|
+| `rebaseWhen: conflicted` | both, [PR 18](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/18) at 23:27:36 UTC and [PR 19](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/19) ten seconds later | nothing left to do |
+| default (`auto`) | one, [PR 20](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/20) | [PR 21](https://github.com/gwenneg-mq-lab/mq-bypass-lab/pull/21) was rebased and left open for the next run |
+
+Renovate stops its branch loop after a merge and restarts the job once. With the default setting the restarted pass rebases the other PR, since it is now behind; with `conflicted` it merges it, since it is green and not in conflict. A first attempt with two adjacent lines was void: after the first merge the second PR conflicted, so it was rebased under both settings.
