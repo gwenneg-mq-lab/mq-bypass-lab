@@ -3,7 +3,7 @@ FROM alpine:3.18 AS s1
 FROM nginx:1.31 AS s2
 FROM python:3.14 AS s3
 FROM golang:1.27 AS s4
-FROM busybox:1.35 AS s5
+FROM busybox:1.38 AS s5
 FROM perl:5.45 AS s6
 FROM ruby:3.4 AS s7
 FROM php:8.5 AS s8
