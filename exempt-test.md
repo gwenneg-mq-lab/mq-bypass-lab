@@ -1,0 +1,1 @@
+Exempt bypass mode test, 2026-10-08. The approval ruleset lists the Organization admin role with bypass mode Exempt. The org owner opens this PR and turns on auto-merge. Does it merge without an approval?
