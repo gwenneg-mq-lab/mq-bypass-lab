@@ -1,0 +1,11 @@
+name: Gate
+on:
+  pull_request:
+  merge_group:
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "head_ref=${{ github.head_ref }}"
+          case "${{ github.head_ref }}" in *alpine*|*busybox* echo red
