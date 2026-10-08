@@ -1,0 +1,1 @@
+Exempt bypass mode with a merge queue, 2026-10-08. Approval ruleset: Organization admin role exempt. Queue ruleset: active, nobody bypasses it. The org owner arms auto-merge. Does the PR enter the queue and merge?
